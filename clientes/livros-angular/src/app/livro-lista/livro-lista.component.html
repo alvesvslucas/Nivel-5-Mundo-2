@@ -1,0 +1,29 @@
+<main class="container">
+  <h1 class="text-center py-4">Catálogo de Livros</h1>
+  <table class="container-fluid">
+    <thead>
+      <tr class="text-light bg-dark col">
+        <th class="p-3 col-2">Título</th>
+        <th class="p-3 col-7">Resumo</th>
+        <th class="p-3 col-1">Editora</th>
+        <th class="p-3 col-2">Autores</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livro of livros">
+        <td>
+          {{ livro.titulo }} <br>
+          <button (click)="excluir(livro.codigo)" class="btn btn-danger">Excluir</button>
+        </td>
+        <td>{{ livro.resumo }}</td>
+        <td>{{ obterNome(livro.codEditora) }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let autor of livro.autores">{{ autor }}</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 class="text-center py-5" *ngIf="livros.length <= 0">Estoque de livros vazio 😢</h2>
+</main>
