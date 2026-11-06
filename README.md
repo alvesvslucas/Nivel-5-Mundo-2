@@ -1,73 +1,59 @@
+# Catálogo de Livros — Express, MongoDB e Front-ends
 
-# ![capa logotipo-Estacio](./Images/Estacio.png)
+Missão Prática RPG0012, Mundo 2, Nível 5, do curso de Desenvolvimento Full Stack da Estácio.
 
-# RPG0012 - Vamos colocar o framework para acessar um banco!
+**Autor indicado no projeto:** Lucas Alves Vieira da Silva.
 
----
+O exercício integra uma API de livros com clientes React, Next.js e Angular.
 
-Missão prática | Nível 5 | Mundo 2 do Curso Desenvolvimento Full-Stack da Universidade Estácio.
+## Componentes
 
----
+| Pasta | Tecnologias declaradas | Inicialização |
+| --- | --- | --- |
+| `livro-servidor/` | Express 4, Mongoose 8, EJS | `npm start` |
+| `clientes/livros-react/` | React 18, TypeScript 4, React Scripts 5 | `npm start` |
+| `clientes/livros-next/` | Next.js 13.2.4, React 18 | `npm run dev` |
+| `clientes/livros-angular/` | Angular 17.3, TypeScript 5.4 | `npm start` |
 
-## 📋 Projeto
+## Preparação
 
-Integração do Back-end (servidor), com o Front-end utilizando `3 frameworks Javascript` diferentes, para criação e consumo de dados do banco de dados local MongoDB, uma `Missão Prática` do curso de `Desenvolvimento Full-Stack` da `Universidade Estacio de Sá`.
+Use Git, Node.js com npm e MongoDB. Os `package.json` consultados não fixam a versão de Node em `engines`; cada componente tem suas próprias dependências.
 
----
+```sh
+git clone https://github.com/alvesvslucas/Nivel-5-Mundo-2.git
+cd Nivel-5-Mundo-2
+```
 
-## 📝 Descrição
+Prepare uma instância local do MongoDB e ajuste a conexão de desenvolvimento usada por `livro-servidor/modelo/conexao.js`, sem publicar credenciais.
 
-Para facilitar a implementação deste projeto precisamos:
+## Executar
 
-- Criar um objetivo especifico.
-- Materiais necessários para a prática.
-- Metodologia de Desenvolvimento da Prática.
+Inicie a API a partir da raiz:
 
----
+```sh
+cd livro-servidor
+npm install
+npm start
+```
 
-## 💼 Objetivo
+O servidor usa `PORT` ou, por padrão, a porta **3030**; as rotas de livros ficam em `/livros`. Os clientes React e Angular consultados apontam para `http://localhost:3030/livros`.
 
-Criar um servidor baseado em Express e Mongoose, com acesso ao banco de dados MongoDB, além de utilizar diversar tecnologias Front-end, assim me tornando capacitado a lidar com plataformas de desenvolvimento variadas, e satisfazer às necessidades de um mercado cada vez mais heterogêneo, abaixo algumas descrições gerais:
+Em outro terminal, a partir da raiz, escolha **um** cliente:
 
-1. Utilizar o banco de dados `MongoDB` para a criação de repositório `NoSQL`.
-2. Implementar servidor baseado em `Express` e `Mongoose`.
-3. Implementar biblioteca cliente de acesso em `JavaScript`.
-4. Utilizar front-ends baseados em `ReactJs`,`NextJs` e `Angular`.
+```sh
+cd clientes/livros-react
+npm install
+npm start
+```
 
----
+Para as outras versões, entre na pasta correspondente da tabela, execute `npm install` e o comando de inicialização indicado. Use o endereço mostrado no terminal. React e Next.js podem disputar a mesma porta quando iniciados juntos.
 
-## 🛠 Materiais_necessários
+## Build e estado
 
-Materiais necessários para a prática:
+Os três clientes possuem `npm run build`; React e Angular possuem `npm test`, e Next.js possui `npm run lint`. O servidor não declara script de testes. Instalação, banco, integração e builds não foram executados nesta revisão.
 
-1. Computador com acesso à internet;
-2. Editor de código Visual Studio Code;
-3. Banco de dados MongoDB e ferramenta Compass.
-4. Ambiente de desenvolvimento NodeJS.
-5. Navegador de internet instalado no computador.
+## Imagens
 
----
-
-
-## 🔎 Imagens
-
-Página Inicial | Catálogo
-
-![Pagina Inicial](./Images/Tela_inicial.png)
-
-Pagina Cadastro
-
-![Pagina Cadastro](./Images/Tela_Cadastro.png)
-
-Verficação de Formulários
-
-![Verificacao de Formularios](./Images/Verificação_de_formulario.png)
-
----
-
-## 👩‍💻 Autor
-
-Este repositório foi desenvolvido por
-|Autor|
-|----------------|
-| Lucas Alves Vieira da Silva |
+![Página inicial](Images/Tela_inicial.png)
+![Cadastro](Images/Tela_Cadastro.png)
+![Formulários](Images/Verificação_de_formulario.png)
