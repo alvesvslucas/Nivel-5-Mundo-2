@@ -1,0 +1,43 @@
+name: Livros API com MongoDB isolado
+on:
+  push:
+    branches: [main]
+    paths: ['livro-servidor/**', '.github/workflows/livros-api.yml']
+  pull_request:
+    paths: ['livro-servidor/**', '.github/workflows/livros-api.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports: ['27017:27017']
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'quit(db.adminCommand({ping:1}).ok ? 0 : 1)'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    defaults:
+      run:
+        working-directory: livro-servidor
+    env:
+      MONGODB_URI: mongodb://127.0.0.1:27017/ci_nivel5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: livro-servidor/package-lock.json
+      - name: Instalar dependências do lockfile existente
+        run: npm ci
+      - name: Testar contratos e falhas sem simular integração
+        run: node --test tests/livros-unit.test.cjs
+      - name: Testar API Express real com MongoDB de serviço
+        run: node tests/run-http-smoke.cjs

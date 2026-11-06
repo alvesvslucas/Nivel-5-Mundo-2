@@ -4,7 +4,7 @@ const banco = require('mongoose');
 const dbName = 'livraria';
 
 //endereço do banco de dados + banco de dados
-const mongoURI = `mongodb://127.0.0.1:27017/${dbName}`
+const mongoURI = process.env.MONGODB_URI || `mongodb://127.0.0.1:27017/${dbName}`
 
 
 banco.connect(mongoURI) //chamando o link do banco de dados
