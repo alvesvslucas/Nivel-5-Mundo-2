@@ -1,33 +1,8 @@
 const Livro = require('./livro-schema');
 
-const obterLivros = async () => {
-    try {
-        const livros = await Livro.find();
-    	return livros;
-    } catch (error) {
-        console.error("Error ao obter lista de livros: ", error);
-		return [];
-    }
-};
+// Let the HTTP layer report database failures instead of returning false success.
+const obterLivros = () => Livro.find();
+const incluir = (livro) => Livro.create(livro);
+const excluir = (codigo) => Livro.deleteOne({ _id: codigo });
 
-const incluir = async (livro) => {
-    try {
-        await Livro.create(livro);
-    } catch (error) {
-        console.error("Error ao obter lista de livros: ", error);
-    }
-};
-
-const excluir = async (codigo) => {
-    try {
-        await Livro.deleteOne({ _id: codigo });
-    } catch (error) {
-        console.error("Error ao excluir livro: ", error);
-    }
-};
-
-module.exports = {
-    obterLivros,
-    incluir,
-    excluir
-};
+module.exports = { obterLivros, incluir, excluir };
